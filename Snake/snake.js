@@ -40,6 +40,10 @@ var map_spots = {
 
 beforeGame();
 
+function goHome(){
+  window.location.href = "../index.html";
+}
+
 function beforeGame(){
   xval=0;
   yval=0;
