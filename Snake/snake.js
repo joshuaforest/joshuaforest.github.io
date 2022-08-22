@@ -1,29 +1,20 @@
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
+//#region variable declaration
 const gameWidth = 60;
 const gameHeight = 37;
-var xval=0;
-var yval=0;
-var xvel=0;
-var yvel=0;
-var txval=-1;
-var tyval=-1;
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+var xval=0,yval=0,xvel=0,yvel=0;
+var txval=-1, tyval=-1;
 var length=1;
 var gameDone=false;
 var dead = false;
 var gameDone = false;
 var moved = true;
-
 var game = new Array(gameWidth);
-for (var i = 0; i < gameWidth; i++) {
-  game[i] = new Array(gameHeight);
-}
-
 var vgame=new Array(gameWidth);
-for(var i=0;i<gameWidth;i++){
-  vgame[i]=new Array(gameHeight);
-}
+//#endregion
 
+//#region constants
 var dim = {
     dim_x: 0,
     dim_y: 1,
@@ -37,16 +28,29 @@ var map_spots = {
   snake_tail:3,
   food:4,
 };
+//#endregion
 
-beforeGame();
+
+function main(){
+  beforeGame();
+  gamePlay();
+}
+
 
 function goHome(){
   window.location.href = "../index.html";
 }
 
 function beforeGame(){
-  xval=0;
-  yval=0;
+  for (var i = 0; i < gameWidth; i++) {
+    game[i] = new Array(gameHeight);
+  }
+
+  for(var i=0;i<gameWidth;i++){
+    vgame[i]=new Array(gameHeight);
+  }
+
+  xval=0,yval=0;
   xvel=0;
   yvel=0;
   txval=-1;
@@ -67,13 +71,11 @@ function beforeGame(){
   game[0][0]=map_spots.snake_head;
   document.getElementById("output").innerHTML=length;
   generateFood();
-  gamePlay();
 }
 
 async function gamePlay(){
     await sleep(40);
     clear();
-    //drawSquare(xval,yval);
     drawMap();
     moveSnake();
     if(gameDone){
@@ -290,3 +292,5 @@ document.onkeydown = function(e) {
   }
   moved=false;
 };
+
+main();
