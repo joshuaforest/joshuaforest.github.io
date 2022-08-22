@@ -30,7 +30,9 @@ var map_spots = {
 };
 //#endregion
 
-
+/*
+ *Initializes variables and starts the game
+ */
 function main(){
   beforeGame();
   gamePlay();
